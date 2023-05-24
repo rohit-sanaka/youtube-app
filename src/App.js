@@ -1,24 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+/**
+ * Header
+ *  ---
+ *  - Hamburger
+ *  - Logo
+ *  ---
+ *  - SearchBar
+ *  - SearchIcon
+ *  ---
+ *  - Profile
+ * 
+ * Body
+ *
+ *  - Sidebar
+ *    - MenuItems
+ * 
+ *  - MainContainer
+ *    - ButtonsList
+ *    - VideoContainer
+ *       - VideoCard
+ * 
+ * 
+ * 
+ * 
+ */
+
+import { Provider } from "react-redux";
+import Body from "./components/Body";
+import Header from "./components/Header";
+import store from "./utils/store";
+
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <div>
+        <Header />
+        <Body />
+      </div>
+    </Provider>
   );
 }
 
