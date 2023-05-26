@@ -3,9 +3,10 @@ import ButtonsList from './ButtonsList'
 import VideoContainer from './VideoContainer'
 
 const MainContainer = () => {
+
   return (
-    <div className="col-span-10">
-      <h1>Main container</h1>
+    // <div className={`${isMenuOpen ? `col-span-10` : `col-span-12`} overflow-y-scroll `}>
+    <div className={`w-full h-full overflow-scroll `}>
       <ButtonsList />
       <VideoContainer />
     </div>

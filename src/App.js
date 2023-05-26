@@ -34,7 +34,7 @@ import store from "./utils/store";
 function App() {
   return (
     <Provider store={store}>
-      <div>
+      <div className="font-[Roboto]">
         <Header />
         <Body />
       </div>
