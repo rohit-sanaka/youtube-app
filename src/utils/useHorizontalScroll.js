@@ -1,10 +1,9 @@
-import React, { useRef, useEffect, useState } from 'react'
+import { useRef, useEffect, useState } from 'react';
 
 const useHorizontalScroll = () => {
-  const scrollRef = useRef(0)
+  const scrollRef = useRef(0);
   const [showLeftButton, setShowLeftButton] = useState(false);
   const [showRightButton, setShowRightButton] = useState(true);
-
 
   const scroll = (scrollOffset) => {
     scrollRef.current.scrollLeft = scrollRef.current.scrollLeft + scrollOffset;
@@ -16,7 +15,7 @@ const useHorizontalScroll = () => {
       const maxScrollLeft = scrollRef.current.scrollWidth - scrollRef.current.clientWidth;
 
       setShowLeftButton(scrollPosition > 0);
-      setShowRightButton(scrollPosition <= maxScrollLeft-10);
+      setShowRightButton(scrollPosition <= maxScrollLeft - 10);
     }
   };
 
@@ -31,8 +30,7 @@ const useHorizontalScroll = () => {
       }
     };
   }, []);
-  return [scrollRef, scroll, showLeftButton, showRightButton]
+  return [scrollRef, scroll, showLeftButton, showRightButton];
+};
 
-}
-
-export default useHorizontalScroll
+export default useHorizontalScroll;

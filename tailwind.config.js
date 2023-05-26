@@ -1,3 +1,4 @@
+/** @global someFunction, module*/
 /** @type {import('tailwindcss').Config} */
 
 const gridColumns = {};
@@ -6,15 +7,15 @@ for (let i = 1; i <= 24; i++) {
 }
 
 module.exports = {
-  content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
     extend: {
       gridTemplateColumns: {
         // 24 column grid
-        '24': 'repeat(24, minmax(0, 1fr))',
+        24: 'repeat(24, minmax(0, 1fr))'
       },
-      gridColumns: gridColumns,
-    },
+      gridColumns: gridColumns
+    }
   },
 
   plugins: [
@@ -22,5 +23,5 @@ module.exports = {
       addVariant('child', '& > *');
       addVariant('child-hover', '& > *:hover');
     }
-  ],
-}
+  ]
+};
