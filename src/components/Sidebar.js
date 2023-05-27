@@ -1,15 +1,14 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector } from 'react-redux'
 
 const Sidebar = () => {
-  const isMenuOpen = useSelector((store) => store.app.isMenuOpen);
+  const isMenuOpen = useSelector((store) => store.app.isMenuOpen)
 
   if (!isMenuOpen) {
-    return null;
+    return null
   }
 
   return (
-    <div className=" w-60 child:w-48 sidebar h-screen sticky top-16 pl-1 pr-3 pb-20 overflow-hidden hover:overflow-scroll font-medium">
+    <div className=" w-60 child:w-48 sidebar h-[calc(100vh-4rem)] sticky top-16 pl-1 pr-3 overflow-hidden hover:overflow-scroll font-medium">
       <ul className=" list-none child:py-1 child:my-2 child:flex child:gap-7 child:items-center child:text-lg">
         <li>Home</li>
         <li>Shorts</li>
@@ -54,7 +53,7 @@ const Sidebar = () => {
         <li>Music</li>
       </ul>
     </div>
-  );
-};
+  )
+}
 
-export default Sidebar;
+export default Sidebar

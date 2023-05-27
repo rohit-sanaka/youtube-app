@@ -1,27 +1,26 @@
-/** @global someFunction, module*/
 /** @type {import('tailwindcss').Config} */
 
-const gridColumns = {};
+const gridColumns = {}
 for (let i = 1; i <= 24; i++) {
-  gridColumns[i] = `span ${i} / span ${i}`;
+  gridColumns[i] = `span ${i} / span ${i}`
 }
 
 module.exports = {
-  content: ['./src/**/*.{js,jsx,ts,tsx}'],
+  content: ['./src/**/*.js'],
   theme: {
     extend: {
       gridTemplateColumns: {
         // 24 column grid
-        24: 'repeat(24, minmax(0, 1fr))'
+        24: 'repeat(24, minmax(0, 1fr))',
       },
-      gridColumns: gridColumns
-    }
+      gridColumns: gridColumns,
+    },
   },
 
   plugins: [
     function ({ addVariant }) {
-      addVariant('child', '& > *');
-      addVariant('child-hover', '& > *:hover');
-    }
-  ]
-};
+      addVariant('child', '& > *')
+      addVariant('child-hover', '& > *:hover')
+    },
+  ],
+}

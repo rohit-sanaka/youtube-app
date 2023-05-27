@@ -1,6 +1,5 @@
-import React from 'react';
-import Button from './Button';
-import useHorizontalScroll from '../utils/useHorizontalScroll';
+import Button from './Button'
+import useHorizontalScroll from '../utils/useHorizontalScroll'
 
 const buttonsArray = [
   'All',
@@ -20,14 +19,14 @@ const buttonsArray = [
   'Action',
   'Science',
   'React',
-  'FrontEnd'
-];
+  'FrontEnd',
+]
 
 const ButtonsList = () => {
-  const [scrollRef, scroll, showLeftButton, showRightButton] = useHorizontalScroll();
+  const [scrollRef, scroll, showLeftButton, showRightButton] = useHorizontalScroll()
 
   return (
-    <div className="flex p-2 items-center sticky top-[3.75rem] z-10 bg-white">
+    <div className="flex p-2 items-center sticky top-16 z-10 bg-white">
       {showLeftButton && (
         <button
           className="w-8 p-2 mr-5 rounded-full hover:bg-gray-300 shadow-lg shadow-white absolute left-0"
@@ -39,7 +38,7 @@ const ButtonsList = () => {
 
       <div className="flex flex-nowrap gap-4 mx-10 overflow-hidden hover:overflow-x-auto scroll-smooth" ref={scrollRef}>
         {buttonsArray.map((name) => {
-          return <Button key={name} name={name} />;
+          return <Button key={name} name={name} />
         })}
       </div>
 
@@ -52,7 +51,7 @@ const ButtonsList = () => {
         </button>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default ButtonsList;
+export default ButtonsList

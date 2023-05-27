@@ -15,10 +15,10 @@
 ::-webkit-scrollbar-track {
   border-radius: 50%;
 }
- 
+
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: hsl(0, 0%, 75%); 
+  background: hsl(0, 0%, 75%);
   border-radius: 10px;
 }
 
@@ -27,7 +27,6 @@
   background: hsl(0, 0%, 50%);
 }
 
-.sidebar{
+.sidebar {
   scrollbar-gutter: stable;
 }
-

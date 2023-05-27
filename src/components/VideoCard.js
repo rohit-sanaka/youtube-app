@@ -1,32 +1,31 @@
-import React from 'react';
-import { getPublishedDuration, getViewsFormated } from '../utils/helperFuntions';
+import { getPublishedDuration, getViewsFormated } from '../utils/helperFuntions'
 
 const VideoCard = ({ info }) => {
-  const { contentDetails, snippet, statistics } = info;
-  const { duration } = contentDetails;
+  const { contentDetails, snippet, statistics } = info
+  const { duration } = contentDetails
   const {
     channelTitle,
     publishedAt,
     localized: { title },
     thumbnails: {
-      medium: { url }
-    }
-  } = snippet;
-  const { viewCount } = statistics;
+      medium: { url },
+    },
+  } = snippet
+  const { viewCount } = statistics
 
   const duration1 = duration.replace(/PT|D|H|M|S/gi, (x) => {
     if (x === 'S') {
-      return '';
+      return ''
     }
     if (x === 'PT') {
-      return '';
+      return ''
     } else {
-      return ':';
+      return ':'
     }
-  });
+  })
 
-  const elapsedTime = getPublishedDuration(publishedAt);
-  const views = getViewsFormated(viewCount);
+  const elapsedTime = getPublishedDuration(publishedAt)
+  const views = getViewsFormated(viewCount)
 
   return (
     <div>
@@ -44,7 +43,7 @@ const VideoCard = ({ info }) => {
         <h3>{elapsedTime}</h3>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default VideoCard;
+export default VideoCard
