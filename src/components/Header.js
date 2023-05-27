@@ -1,10 +1,11 @@
 import { useDispatch } from 'react-redux'
-import { toggleMenu } from '../utils/appSlice'
+import { toggleMenu, openMenu } from '../utils/appSlice'
+import { Link } from 'react-router-dom'
 
 const Header = () => {
-  const disatch = useDispatch()
+  const dispatch = useDispatch()
   const handleMenuToggle = () => {
-    disatch(toggleMenu())
+    dispatch(toggleMenu())
   }
 
   return (
@@ -18,11 +19,16 @@ const Header = () => {
             handleMenuToggle()
           }}
         />
-        <img
-          className="h-6 cursor-pointer"
-          src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/YouTube_Logo_2017.svg/1280px-YouTube_Logo_2017.svg.png"
-          alt="logo-img"
-        />
+        <Link to="/">
+          <img
+            className="h-6 cursor-pointer"
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/YouTube_Logo_2017.svg/1280px-YouTube_Logo_2017.svg.png"
+            alt="logo-img"
+            onClick={() => {
+              dispatch(openMenu())
+            }}
+          />
+        </Link>
       </div>
 
       <form className="w-7/12 text-center flex items-center pl-24">

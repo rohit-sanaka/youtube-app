@@ -4,10 +4,34 @@ import './index.css'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
 
+import MainContainer from './components/MainContainer'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import WatchPage from './components/WatchPage'
+
 const root = ReactDOM.createRoot(document.getElementById('root'))
+
+const appRouter = createBrowserRouter([
+  {
+    path: '/',
+    element: <App />,
+    children: [
+      {
+        path: '/',
+        element: <MainContainer />,
+      },
+      {
+        path: 'watch',
+        element: <WatchPage />,
+      },
+    ],
+  },
+])
+
 root.render(
   <React.StrictMode>
-    <App />
+    <RouterProvider router={appRouter}>
+      <App />
+    </RouterProvider>
   </React.StrictMode>
 )
 
