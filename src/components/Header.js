@@ -1,12 +1,14 @@
 import { useDispatch } from 'react-redux'
 import { toggleMenu, openMenu } from '../utils/appSlice'
 import { Link } from 'react-router-dom'
+import { memo } from 'react'
 
 const Header = () => {
   const dispatch = useDispatch()
   const handleMenuToggle = () => {
     dispatch(toggleMenu())
   }
+  console.log('header')
 
   return (
     <div className="flex sticky top-0 h-16 justify-between z-10 py-2 px-6 bg-white">
@@ -52,4 +54,4 @@ const Header = () => {
   )
 }
 
-export default Header
+export default memo(Header)

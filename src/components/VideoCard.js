@@ -1,46 +1,33 @@
-import { getPublishedDuration, getViewsFormated } from '../utils/helperFuntions'
+import { filterVideoInfo } from '../utils/helperFuntions.js'
+import useFetch from '../utils/useFetch.js'
 
 const VideoCard = ({ info }) => {
-  const { contentDetails, snippet, statistics } = info
-  const { duration } = contentDetails
-  const {
-    channelTitle,
-    publishedAt,
-    localized: { title },
-    thumbnails: {
-      medium: { url },
-    },
-  } = snippet
-  const { viewCount } = statistics
+  const { channelTitle, title, channelId, elapsedTime, url, videoDuration, views } = filterVideoInfo(info)
 
-  const duration1 = duration.replace(/PT|D|H|M|S/gi, (x) => {
-    if (x === 'S') {
-      return ''
-    }
-    if (x === 'PT') {
-      return ''
-    } else {
-      return ':'
-    }
-  })
+  const CHANNEL_DATA_API_URL = `https://youtube.googleapis.com/youtube/v3/channels?part=snippet%2Cstatistics&id=${channelId}&key=AIzaSyCLIeN6oscxgiWk5wh9wiVYA1s78DdMGIg`
 
-  const elapsedTime = getPublishedDuration(publishedAt)
-  const views = getViewsFormated(viewCount)
+  const channelData = useFetch(CHANNEL_DATA_API_URL)
+  const { url: channelUrl } = channelData[0]?.snippet?.thumbnails?.medium || {}
 
   return (
     <div>
       <div className="relative">
         <img className="min-w-full rounded-xl" src={url} alt="thumbnail" />
         <p className="absolute right-1 bottom-1 px-1 font-semibold text-sm text-white bg-black rounded-md">
-          {duration1}
+          {videoDuration}
         </p>
       </div>
-      <h1 className="mt-2 w-11/12 line-clamp-2 break-words text-lg font-semibold">{title}</h1>
-      <h3 className="text-lg font-medium text-gray-500">{channelTitle}</h3>
-      <div className="flex gap-3 items-center font-medium  text-gray-500">
-        <h3>{views + ' views'}</h3>
-        <p className="font-bold">|</p>
-        <h3>{elapsedTime}</h3>
+      <div className="flex items-start gap-3 my-2">
+        <img className="w-10 rounded-full" src={channelUrl} alt="thumbnail" />
+        <div>
+          <h1 className="w-11/12 line-clamp-2 break-words text-lg font-semibold">{title}</h1>
+          <h3 className="text-lg  text-gray-500">{channelTitle}</h3>
+          <div className="flex gap-3 items-center  text-gray-500">
+            <h3>{views + ' views'}</h3>
+            <p className="font-bold">|</p>
+            <h3>{elapsedTime}</h3>
+          </div>
+        </div>
       </div>
     </div>
   )

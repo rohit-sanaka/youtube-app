@@ -30,3 +30,8 @@
 .sidebar {
   scrollbar-gutter: stable;
 }
+
+.watchpage {
+  display: grid;
+  grid-template-columns: 7fr 3fr;
+}

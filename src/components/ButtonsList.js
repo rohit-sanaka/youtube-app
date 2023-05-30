@@ -26,7 +26,7 @@ const ButtonsList = () => {
   const [scrollRef, scroll, showLeftButton, showRightButton] = useHorizontalScroll()
 
   return (
-    <div className="flex p-2 items-center sticky top-16 z-10 bg-white">
+    <div className="flex py-5 px-2 items-center sticky top-16 z-10 bg-white">
       {showLeftButton && (
         <button
           className="w-8 p-2 mr-5 rounded-full hover:bg-gray-300 shadow-lg shadow-white absolute left-0"

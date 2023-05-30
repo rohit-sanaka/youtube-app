@@ -1,10 +1,11 @@
+import { useSelector } from 'react-redux'
 import ButtonsList from './ButtonsList'
 import VideoContainer from './VideoContainer'
 
 const MainContainer = () => {
+  const isMenuOpen = useSelector((store) => store.app.isMenuOpen)
   return (
-    // <div className={`${isMenuOpen ? `col-span-10` : `col-span-12`} overflow-y-scroll `}>
-    <div className="min-w-0 w-full">
+    <div className={`${isMenuOpen ? 'ml-60' : ''} pr-6`}>
       <ButtonsList />
       <VideoContainer />
     </div>

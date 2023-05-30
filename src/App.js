@@ -1,38 +1,14 @@
-/**
- * Header
- *  ---
- *  - Hamburger
- *  - Logo
- *  ---
- *  - SearchBar
- *  - SearchIcon
- *  ---
- *  - Profile
- *
- * Body
- *
- *  - Sidebar
- *    - MenuItems
- *
- *  - MainContainer
- *    - ButtonsList
- *    - VideoContainer
- *       - VideoCard
- *
- *
- *
- *
- */
-
 import { Provider } from 'react-redux'
 import Body from './components/Body'
-// import MainContainer from './components/MainContainer'
 import Header from './components/Header'
 import store from './utils/store'
-// import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-// import WatchPage from './components/WatchPage'
+import useOnline from './utils/useOnline'
 
 function App() {
+  const isOnline = useOnline()
+  if (!isOnline) {
+    alert('No Internet connection! Please check your Internet connection')
+  }
   return (
     <Provider store={store}>
       <div className="font-[Roboto]">

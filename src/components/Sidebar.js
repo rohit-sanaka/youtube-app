@@ -1,5 +1,6 @@
 import { useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
+import { memo } from 'react'
 
 const Sidebar = () => {
   const isMenuOpen = useSelector((store) => store.app.isMenuOpen)
@@ -7,9 +8,9 @@ const Sidebar = () => {
   if (!isMenuOpen) {
     return null
   }
-
+  console.log('sidebar')
   return (
-    <div className=" w-60 child:w-48 sidebar h-[calc(100vh-4rem)] sticky top-16 pl-1 pr-3 overflow-hidden hover:overflow-scroll font-medium">
+    <div className=" w-60 py-5 pl-6 child:w-48 sidebar h-[calc(100vh-4rem)] fixed top-16 z-10 bg-white pr-3 overflow-hidden hover:overflow-scroll font-medium ">
       <ul className=" list-none child:p-2 child:rounded-md child:flex child:gap-7 child:items-center child:text-lg">
         <NavLink to="/" className={({ isActive }) => (isActive ? 'bg-gray-200 ' : 'hover:bg-gray-200')}>
           <li>Home</li>
@@ -87,4 +88,4 @@ const Sidebar = () => {
   )
 }
 
-export default Sidebar
+export default memo(Sidebar)

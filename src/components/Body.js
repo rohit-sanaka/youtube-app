@@ -2,7 +2,7 @@ import Sidebar from './Sidebar'
 import { Outlet } from 'react-router-dom'
 const Body = () => {
   return (
-    <div className="flex items-start px-6">
+    <div className="">
       <Sidebar />
       <Outlet />
     </div>
