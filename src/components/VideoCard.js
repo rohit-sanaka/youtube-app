@@ -16,8 +16,8 @@ const VideoCard = ({ info }) => {
 
   return (
     <div>
-      <div className="relative h-56 aspect-auto">
-        {isImageLoading && <div className="absolute w-full h-full top-0 left-0  rounded-xl bg-gray-200"></div>}
+      <div className="relative aspect-auto h-56">
+        {isImageLoading && <div className="absolute left-0 top-0 h-full w-full  rounded-xl bg-gray-200"></div>}
         <img
           className="min-w-full rounded-xl"
           onLoad={() => {
@@ -26,14 +26,14 @@ const VideoCard = ({ info }) => {
           src={url}
           alt="thumbnail"
         />
-        <p className="absolute right-2 bottom-2 px-1 font-semibold text-sm text-white bg-black rounded-md">
+        <p className="absolute bottom-2 right-2 rounded-md bg-black px-1 text-sm font-semibold text-white">
           {videoDuration}
         </p>
       </div>
 
-      <div className="flex items-start gap-3 my-2">
-        <div className="h-10 aspect-square relative">
-          {isChannelImageLoading && <div className="absolute h-10 aspect-square rounded-full bg-gray-200"></div>}
+      <div className="my-2 flex items-start gap-3">
+        <div className="relative aspect-square h-10">
+          {isChannelImageLoading && <div className="absolute aspect-square h-10 rounded-full bg-gray-200"></div>}
           <img
             className="h-10 rounded-full"
             onLoad={() => {
@@ -44,9 +44,9 @@ const VideoCard = ({ info }) => {
           />
         </div>
         <div>
-          <h1 className="w-11/12 line-clamp-2 break-words text-lg font-semibold">{title}</h1>
+          <h1 className="line-clamp-2 w-11/12 break-words text-lg font-semibold">{title}</h1>
           <h3 className="text-lg  text-gray-500">{channelTitle}</h3>
-          <div className="flex gap-3 items-center  text-gray-500">
+          <div className="flex items-center gap-3  text-gray-500">
             <h3>{views + ' views'}</h3>
             <p className="font-bold">|</p>
             <h3>{elapsedTime}</h3>

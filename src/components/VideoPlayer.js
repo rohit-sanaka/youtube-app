@@ -22,9 +22,9 @@ const VideoPlayer = () => {
   const { url: channelUrl, subscribers } = (channelData && filterChannelInfo(channelData[0])) || {}
 
   return (
-    <div className="w-full pt-6 pr-2 pl-7 mx-auto">
+    <div className="mx-auto w-full pl-7 pr-2 pt-6">
       <iframe
-        className="w-full aspect-video"
+        className="aspect-video w-full"
         src={'https://www.youtube.com/embed/' + videoId + '?autoplay=1'}
         title="YouTube video player"
         frameBorder="0"
@@ -33,7 +33,7 @@ const VideoPlayer = () => {
       ></iframe>
       <div className="child:my-2">
         {/* title */}
-        <h1 className="mt-2 w-11/12 line-clamp-2 break-words text-lg font-semibold">{title}</h1>
+        <h1 className="mt-2 line-clamp-2 w-11/12 break-words text-lg font-semibold">{title}</h1>
 
         {/* channel and subscribe, likes */}
         <div className="flex items-start gap-3">
@@ -48,13 +48,13 @@ const VideoPlayer = () => {
         {/* Descrription */}
         <div
           className={`${
-            isCollapsed ? 'cursor-pointer bg-gray-100  hover:bg-zinc-300 overflow-hidden' : 'bg-zinc-200 '
-          }  rounded-lg px-3 py-5 relative`}
+            isCollapsed ? 'cursor-pointer overflow-hidden  bg-gray-100 hover:bg-zinc-300' : 'bg-zinc-200 '
+          }  relative rounded-lg px-3 py-5`}
           onClick={() => {
             isCollapsed && setIsCollapsed(false)
           }}
         >
-          <div className="flex gap-3 items-center child:font-bold">
+          <div className="flex items-center gap-3 child:font-bold">
             <h3>{views + ' views'}</h3>
             <h3>{elapsedTime}</h3>
           </div>

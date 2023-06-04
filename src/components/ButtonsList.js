@@ -27,17 +27,17 @@ const ButtonsList = () => {
   const [scrollRef, scroll, showLeftButton, showRightButton] = useHorizontalScroll()
 
   return (
-    <div className="flex py-5 px-2 items-center sticky top-16 z-10 bg-white">
+    <div className="sticky top-16 z-10 flex items-center bg-white px-2 py-5">
       {showLeftButton && (
         <button
-          className="w-8 p-2 mr-5 rounded-full hover:bg-gray-300 shadow-lg shadow-white absolute left-0"
+          className="absolute left-0 mr-5 w-8 rounded-full p-2 shadow-lg shadow-white hover:bg-gray-300"
           onClick={() => scroll(-500)}
         >
           <img src="https://cdn-icons-png.flaticon.com/512/271/271220.png" alt="arrow" />
         </button>
       )}
 
-      <div className="flex flex-nowrap gap-4 mx-10 overflow-hidden hover:overflow-x-auto scroll-smooth" ref={scrollRef}>
+      <div className="mx-10 flex flex-nowrap gap-4 overflow-hidden scroll-smooth hover:overflow-x-auto" ref={scrollRef}>
         {buttonsArray.map((name) => {
           return <Button key={name} name={name} />
         })}
@@ -45,7 +45,7 @@ const ButtonsList = () => {
 
       {showRightButton && (
         <button
-          className=" w-8 p-2 ml-5 z-10 rounded-full hover:bg-gray-200 absolute right-0"
+          className=" absolute right-0 z-10 ml-5 w-8 rounded-full p-2 hover:bg-gray-200"
           onClick={() => scroll(500)}
         >
           <img src=" https://cdn-icons-png.flaticon.com/512/32/32213.png" alt="arrow" />

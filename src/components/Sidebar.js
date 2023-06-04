@@ -8,10 +8,9 @@ const Sidebar = () => {
   if (!isMenuOpen) {
     return null
   }
-  console.log('sidebar')
   return (
-    <div className=" w-60 py-5 pl-6 child:w-48 sidebar h-[calc(100vh-4rem)] fixed top-16 z-10 bg-white pr-3 overflow-hidden hover:overflow-scroll font-medium ">
-      <ul className=" list-none child:p-2 child:rounded-md child:flex child:gap-7 child:items-center child:text-lg">
+    <div className=" sidebar fixed top-16 z-10 h-[calc(100vh-4rem)] w-60 overflow-hidden bg-white py-5 pl-6 pr-3 font-medium hover:overflow-scroll child:w-48 ">
+      <ul className=" list-none child:flex child:items-center child:gap-7 child:rounded-md child:p-2 child:text-lg">
         <NavLink to="/" className={({ isActive }) => (isActive ? 'bg-gray-200 ' : 'hover:bg-gray-200')}>
           <li>Home</li>
         </NavLink>
@@ -22,8 +21,8 @@ const Sidebar = () => {
           <li>Subscriptions</li>
         </NavLink>
       </ul>
-      <hr className="my-3 border-1 border-gray-300" />
-      <ul className=" list-none child:px-2 child:p-2 child:rounded-md child:flex child:gap-7 child:items-center child:text-lg">
+      <hr className="border-1 my-3 border-gray-300" />
+      <ul className=" list-none child:flex child:items-center child:gap-7 child:rounded-md child:p-2 child:px-2 child:text-lg">
         <NavLink to="library" className={({ isActive }) => (isActive ? 'bg-gray-200 ' : 'hover:bg-gray-200')}>
           <li>Library</li>
         </NavLink>
@@ -43,9 +42,9 @@ const Sidebar = () => {
           <li>Your Clips</li>
         </NavLink>
       </ul>
-      <hr className=" my-3 border-1 border-gray-300" />
+      <hr className=" border-1 my-3 border-gray-300" />
       <h2 className="text-lg font-bold">Subscriptions</h2>
-      <ul className=" list-none child:px-2 child:p-2 child:rounded-md child:flex child:gap-7 child:items-center child:text-lg">
+      <ul className=" list-none child:flex child:items-center child:gap-7 child:rounded-md child:p-2 child:px-2 child:text-lg">
         <NavLink to="channel" className={({ isActive }) => (isActive ? 'bg-gray-200 ' : 'hover:bg-gray-200')}>
           <li>Akshay Saini</li>
         </NavLink>
@@ -59,9 +58,9 @@ const Sidebar = () => {
           <li>FreeCodeCamp.org</li>
         </NavLink>
       </ul>
-      <hr className=" my-3 border-1 border-gray-300" />
+      <hr className=" border-1 my-3 border-gray-300" />
       <h2 className="text-lg font-bold">Explore</h2>
-      <ul className=" list-none child:px-2 child:p-2 child:rounded-md child:flex child:gap-7 child:items-center child:text-lg">
+      <ul className=" list-none child:flex child:items-center child:gap-7 child:rounded-md child:p-2 child:px-2 child:text-lg">
         <NavLink to="trending" className={({ isActive }) => (isActive ? 'bg-gray-200 ' : 'hover:bg-gray-200')}>
           <li>Trending</li>
         </NavLink>

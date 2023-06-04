@@ -13,11 +13,9 @@ const useFetch = (url) => {
         const data = await responce.json()
         setData(data.items)
 
-        console.log(data)
         if (responce.status !== 200) {
           SetError(data?.error?.message + ' | ' + data?.error?.status)
         }
-        
       } catch (err) {
         SetError(err)
       } finally {
