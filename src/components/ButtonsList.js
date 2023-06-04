@@ -1,5 +1,6 @@
 import Button from './Button'
 import useHorizontalScroll from '../utils/useHorizontalScroll'
+import { memo } from 'react'
 
 const buttonsArray = [
   'All',
@@ -54,4 +55,4 @@ const ButtonsList = () => {
   )
 }
 
-export default ButtonsList
+export default memo(ButtonsList)

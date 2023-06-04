@@ -5,19 +5,20 @@ import { filterVideoInfo } from '../utils/helperFuntions'
 import { filterChannelInfo } from '../utils/helperFuntions'
 import Linkify from 'react-linkify'
 import { linkDecorator } from '../utils/helperFuntions'
+import { API_KEY } from '../utils/constants'
 
 const VideoPlayer = () => {
   const [isCollapsed, setIsCollapsed] = useState(true)
   const [searchParams] = useSearchParams()
   const videoId = searchParams.get('v')
 
-  const VIDEO_INFO_API_URL = `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=${videoId}&key=AIzaSyCLIeN6oscxgiWk5wh9wiVYA1s78DdMGIg`
-  const info = useFetch(VIDEO_INFO_API_URL)
+  const VIDEO_INFO_API_URL = `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=${videoId}&key=${API_KEY}`
+  const [info] = useFetch(VIDEO_INFO_API_URL)
   const { channelTitle, channelId, description, title, elapsedTime, views, likes, comments } =
     filterVideoInfo(info[0]) || {}
 
-  const CHANNEL_DATA_API_URL = `https://youtube.googleapis.com/youtube/v3/channels?part=snippet%2Cstatistics&id=${channelId}&key=AIzaSyCLIeN6oscxgiWk5wh9wiVYA1s78DdMGIg`
-  const channelData = useFetch(CHANNEL_DATA_API_URL)
+  const CHANNEL_DATA_API_URL = `https://youtube.googleapis.com/youtube/v3/channels?part=snippet%2Cstatistics&id=${channelId}&key=${API_KEY}`
+  const [channelData] = useFetch(CHANNEL_DATA_API_URL)
   const { url: channelUrl, subscribers } = (channelData && filterChannelInfo(channelData[0])) || {}
 
   return (
@@ -31,7 +32,6 @@ const VideoPlayer = () => {
         allowFullScreen
       ></iframe>
       <div className="child:my-2">
-
         {/* title */}
         <h1 className="mt-2 w-11/12 line-clamp-2 break-words text-lg font-semibold">{title}</h1>
 
@@ -70,7 +70,7 @@ const VideoPlayer = () => {
             {isCollapsed ? 'Show more' : 'Show Less'}
           </button>
         </div>
-        
+
         <div>{comments + ' comments'}</div>
       </div>
     </div>

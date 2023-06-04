@@ -1,14 +1,22 @@
 import { useDispatch } from 'react-redux'
 import { toggleMenu, openMenu } from '../utils/appSlice'
 import { Link } from 'react-router-dom'
-import { memo } from 'react'
+import { memo, useEffect, useState } from 'react'
+import { MdSearch } from 'react-icons/md'
+import { SEARCH_SUGGESTIONS_API_URL } from '../utils/constants'
 
 const Header = () => {
+  const [searchQuery, setSearchQuery] = useState('')
   const dispatch = useDispatch()
-  const handleMenuToggle = () => {
-    dispatch(toggleMenu())
-  }
-  console.log('header')
+
+  useEffect(() => {
+    const getSearchSuggestions = async () => {
+      const responce = await fetch(SEARCH_SUGGESTIONS_API_URL + searchQuery)
+      const data = await responce.json()
+      console.log(data[1])
+    }
+    getSearchSuggestions()
+  }, [searchQuery])
 
   return (
     <div className="flex sticky top-0 h-16 justify-between z-10 py-2 px-6 bg-white">
@@ -18,7 +26,7 @@ const Header = () => {
           src="https://icons.veryicon.com/png/o/miscellaneous/linear-icon-45/hamburger-menu-4.png"
           alt="Hamburger-icon"
           onClick={() => {
-            handleMenuToggle()
+            dispatch(toggleMenu())
           }}
         />
         <Link to="/">
@@ -36,15 +44,17 @@ const Header = () => {
       <form className="w-7/12 text-center flex items-center pl-24">
         <input
           type="text"
-          className="w-9/12 full border border-gray-500 h-11 rounded-l-full px-6 shadow-neutral-300 shadow-inner"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          className="w-9/12 border border-solid border-gray-500 h-11 rounded-l-full px-6 shadow-neutral-300 shadow-inner focus:border-blue-500 focus:ring-0 focus:outline-none"
         />
         <button
-          className="w-16 border h-11 border-gray-500 bg-gray-100 text-xl rounded-r-full"
+          className="w-16 border h-11 text-center border-gray-500 bg-gray-100 text-xl rounded-r-full"
           onClick={(event) => {
             event.preventDefault()
           }}
         >
-          🔍
+          <MdSearch className="m-auto text-gray-500" size="25px" />
         </button>
       </form>
       <div className="w-48 flex justify-end items-center">
