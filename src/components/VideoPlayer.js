@@ -13,14 +13,17 @@ const VideoPlayer = () => {
   const videoId = searchParams.get('v')
 
   const VIDEO_INFO_API_URL = `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=${videoId}&key=${API_KEY}`
-  const [info] = useFetch(VIDEO_INFO_API_URL)
+  const { data: info, error } = useFetch(VIDEO_INFO_API_URL)
   const { channelTitle, channelId, description, title, elapsedTime, views, likes, comments } =
     filterVideoInfo(info[0]) || {}
 
   const CHANNEL_DATA_API_URL = `https://youtube.googleapis.com/youtube/v3/channels?part=snippet%2Cstatistics&id=${channelId}&key=${API_KEY}`
-  const [channelData] = useFetch(CHANNEL_DATA_API_URL)
+  const { data: channelData, err } = useFetch(CHANNEL_DATA_API_URL)
   const { url: channelUrl, subscribers } = (channelData && filterChannelInfo(channelData[0])) || {}
 
+  if (err) {
+    return <h1 className="text-center">{error}</h1>
+  }
   return (
     <div className="mx-auto w-full pl-7 pr-2 pt-6">
       <iframe

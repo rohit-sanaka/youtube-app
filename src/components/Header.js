@@ -9,6 +9,7 @@ const Header = () => {
   const [searchQuery, setSearchQuery] = useState('')
   const [searchSuggestions, setSearchSuggestions] = useState([])
   const [isfocused, setIsFocused] = useState(false)
+
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -48,13 +49,12 @@ const Header = () => {
             />
           </Link>
         </div>
-        <form className="flex h-full  w-5/12 items-center text-center text-center">
+        <form className="flex h-full  w-5/12 items-center text-center">
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             onFocus={() => setIsFocused(true)}
-            onBlur={() => setIsFocused(false)}
             className="h-full w-full rounded-l-full border border-solid border-gray-500 px-6 text-lg shadow-inner shadow-neutral-300 focus:border-2 focus:border-blue-500 focus:outline-none focus:ring-0"
           />
           <button
@@ -72,12 +72,21 @@ const Header = () => {
         </div>
       </div>
       {searchSuggestions.length > 0 && isfocused && (
-        <ul className="fixed left-[30%] top-16  z-50 w-[37%] rounded-2xl bg-white py-3 shadow-2xl child:my-2 ">
+        <ul className="fixed left-[29.8%] top-16  z-50 w-[37%] rounded-2xl bg-white py-3 shadow-2xl child:my-2 ">
           {searchSuggestions.map((suggestion) => {
             return (
-              <li className="flex-start flex cursor-pointer px-5 py-1 text-lg hover:bg-gray-400" key={suggestion}>
-                <MdSearch className="mr-3 text-gray-500" size="25px" /> {suggestion}
-              </li>
+              <Link key={suggestion} to={`/results?search_query=${suggestion}`}>
+                <li
+                  className="flex-start flex cursor-pointer px-5 py-1 text-lg hover:bg-gray-400"
+                  key={suggestion}
+                  onClick={(event) => {
+                    setIsFocused(false)
+                    setSearchQuery(event.target.value)
+                  }}
+                >
+                  <MdSearch className="mr-3 text-gray-500" size="25px" /> {suggestion}
+                </li>
+              </Link>
             )
           })}
         </ul>

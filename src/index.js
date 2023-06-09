@@ -4,6 +4,7 @@ import './index.css'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
 
+import SearchContainer from './components/SearchContainer'
 import MainContainer from './components/MainContainer'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import WatchPage from './components/WatchPage'
@@ -23,6 +24,10 @@ const appRouter = createBrowserRouter([
       {
         path: 'watch',
         element: <WatchPage />,
+      },
+      {
+        path: 'results',
+        element: <SearchContainer />,
       },
     ],
   },

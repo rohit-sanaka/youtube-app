@@ -9,7 +9,8 @@ import Shimmer from './Shimmer'
 const VideoContainer = () => {
   const isMenuOpen = useSelector((store) => store.app.isMenuOpen)
 
-  const [videoData, isLoading, error] = useFetch(VIDEO_LIST_API_URL)
+  const { data: videoData, isLoading, error } = useFetch(VIDEO_LIST_API_URL)
+
   if (error) {
     return <h1 className="text-center">{error}</h1>
   }

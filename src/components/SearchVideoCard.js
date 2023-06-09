@@ -1,21 +1,22 @@
 import { filterVideoInfo } from '../utils/helperFuntions.js'
 import useFetch from '../utils/useFetch.js'
 import { useState } from 'react'
-import { API_KEY } from '../utils/constants.js'
+import { VIDEO_INFO_API_URL, CHANNEL_INFO_API_URL } from '../utils/constants.js'
 
-const VideoCard = ({ info }) => {
+const SearchVideoCard = ({ videoId }) => {
   const [isImageLoading, setIsImageLoading] = useState(true)
   const [isChannelImageLoading, setIsChannelImageLoading] = useState(true)
 
-  const { channelTitle, title, channelId, elapsedTime, url, videoDuration, views } = filterVideoInfo(info)
+  const { data: info, error: err } = useFetch(VIDEO_INFO_API_URL + videoId)
 
-  const CHANNEL_DATA_API_URL = `https://youtube.googleapis.com/youtube/v3/channels?part=snippet%2Cstatistics&id=${channelId}&key=${API_KEY}`
+  const { channelTitle, title, channelId, elapsedTime, url, videoDuration, views } = filterVideoInfo(info?.[0]) || {}
 
-  const { data: channelData, error } = useFetch(CHANNEL_DATA_API_URL)
-  const { url: channelUrl } = channelData[0]?.snippet?.thumbnails?.medium || {}
+  const { data: channelData, error } = useFetch(CHANNEL_INFO_API_URL + channelId)
 
-  if (error) {
-    return <h1>Something went wrong...</h1>
+  const { url: channelUrl } = channelData?.[0]?.snippet?.thumbnails?.medium || {}
+
+  if (error || err) {
+    return <h1 className="text-center">{error || err}</h1>
   }
 
   return (
@@ -61,4 +62,4 @@ const VideoCard = ({ info }) => {
   )
 }
 
-export default VideoCard
+export default SearchVideoCard

@@ -149,7 +149,7 @@ export const filterChannelInfo = (info) => {
 export const linkDecorator = (decoratedHref, decoratedText, key) => (
   <a
     href={decoratedHref}
-    className=" hover:text-blue-800 text-blue-400"
+    className=" text-blue-400 hover:text-blue-800"
     key={key}
     target="_blank"
     rel="noopener noreferrer"
