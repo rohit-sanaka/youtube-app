@@ -4,12 +4,15 @@ import { useDispatch } from 'react-redux'
 import { toggleMenu, openMenu } from '../utils/appSlice'
 import { SEARCH_SUGGESTIONS_API_URL } from '../utils/constants'
 import { MdSearch } from 'react-icons/md'
+import { useRef } from 'react'
+import MouseDownLink from '../utils/MouseDownLink'
 
 const Header = () => {
-  const [searchQuery, setSearchQuery] = useState('')
   const [searchSuggestions, setSearchSuggestions] = useState([])
   const [isfocused, setIsFocused] = useState(false)
-
+  const [searchQuery, setSearchQuery] = useState('')
+  const [backToHome, setBackToHome] = useState()
+  const searchQueryRef = useRef('')
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -45,26 +48,46 @@ const Header = () => {
               alt="logo-img"
               onClick={() => {
                 dispatch(openMenu())
+                setBackToHome(true)
               }}
             />
           </Link>
         </div>
-        <form className="flex h-full  w-5/12 items-center text-center">
+
+        <form
+          className="flex h-full  w-5/12 items-center text-center"
+          onSubmit={(event) => {
+            event.preventDefault()
+          }}
+        >
           <input
             type="text"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
+            value={backToHome ? '' : searchQueryRef.current}
+            onChange={(e) => {
+              setBackToHome(false)
+              searchQueryRef.current = e.target.value
+              setSearchQuery(e.target.value)
+            }}
             onFocus={() => setIsFocused(true)}
+            onBlur={() => setIsFocused(false)}
             className="h-full w-full rounded-l-full border border-solid border-gray-500 px-6 text-lg shadow-inner shadow-neutral-300 focus:border-2 focus:border-blue-500 focus:outline-none focus:ring-0"
           />
-          <button
-            className="h-full w-16 rounded-r-full border border-gray-500 bg-gray-100 text-center text-xl"
-            onClick={(event) => {
-              event.preventDefault()
-            }}
+          <MouseDownLink
+            to={searchQuery ? `/results?search_query=${searchQuery}` : ''}
+            className="h-full w-16 rounded-r-full border border-gray-500 bg-gray-100 "
           >
-            <MdSearch className="m-auto text-gray-500" size="25px" />
-          </button>
+            <button
+              type="submit"
+              className="h-full w-full text-center text-xl"
+              onMouseDown={(event) => {
+                event.preventDefault()
+                setIsFocused(false)
+                setBackToHome(false)
+              }}
+            >
+              <MdSearch className="m-auto text-gray-500" size="25px" />
+            </button>
+          </MouseDownLink>
         </form>
 
         <div className="flex w-48 items-center justify-end">
@@ -72,21 +95,27 @@ const Header = () => {
         </div>
       </div>
       {searchSuggestions.length > 0 && isfocused && (
-        <ul className="fixed left-[29.8%] top-16  z-50 w-[37%] rounded-2xl bg-white py-3 shadow-2xl child:my-2 ">
+        <ul className="fixed left-[29.8%] top-16 z-50 w-[37%] rounded-2xl bg-white py-3 outline outline-1 outline-slate-200 child:my-2">
           {searchSuggestions.map((suggestion) => {
             return (
-              <Link key={suggestion} to={`/results?search_query=${suggestion}`}>
+              <MouseDownLink
+                key={suggestion}
+                to={`/results?search_query=${suggestion}`}
+                className="flex cursor-pointer items-center justify-start py-2 text-lg hover:bg-neutral-200"
+              >
+                <MdSearch className="mx-5  text-gray-500" size="25px" />
                 <li
-                  className="flex-start flex cursor-pointer px-5 py-1 text-lg hover:bg-gray-400"
                   key={suggestion}
-                  onClick={(event) => {
+                  onMouseDown={(event) => {
+                    searchQueryRef.current = event.target.innerHTML
+                    setSearchQuery(event.target.innerHTML)
                     setIsFocused(false)
-                    setSearchQuery(event.target.value)
+                    setBackToHome(false)
                   }}
                 >
-                  <MdSearch className="mr-3 text-gray-500" size="25px" /> {suggestion}
+                  {suggestion}
                 </li>
-              </Link>
+              </MouseDownLink>
             )
           })}
         </ul>

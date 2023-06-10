@@ -1,11 +1,15 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 const useFetch = (url) => {
   const [data, setData] = useState([])
   const [isLoading, setIsLoading] = useState(false)
   const [error, SetError] = useState('')
 
+  const count = useRef(0)
+
   useEffect(() => {
+    count.current += 1
+    console.log(count.current)
     const fetchVideoData = async () => {
       try {
         setIsLoading(true)
@@ -14,7 +18,7 @@ const useFetch = (url) => {
         setData(data.items)
 
         if (responce.status !== 200) {
-          SetError(data?.error?.message + ' | ' + data?.error?.status)
+          SetError('message: ' + data?.error?.message + ' \n code: ' + data?.error?.status)
         }
       } catch (err) {
         SetError(err)

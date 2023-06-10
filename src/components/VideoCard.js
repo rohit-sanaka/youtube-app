@@ -1,60 +1,37 @@
 import { filterVideoInfo } from '../utils/helperFuntions.js'
-import useFetch from '../utils/useFetch.js'
 import { useState } from 'react'
-import { API_KEY } from '../utils/constants.js'
 
 const VideoCard = ({ info }) => {
   const [isImageLoading, setIsImageLoading] = useState(true)
-  const [isChannelImageLoading, setIsChannelImageLoading] = useState(true)
 
-  const { channelTitle, title, channelId, elapsedTime, url, videoDuration, views } = filterVideoInfo(info)
-
-  const CHANNEL_DATA_API_URL = `https://youtube.googleapis.com/youtube/v3/channels?part=snippet%2Cstatistics&id=${channelId}&key=${API_KEY}`
-
-  const { data: channelData, error } = useFetch(CHANNEL_DATA_API_URL)
-  const { url: channelUrl } = channelData[0]?.snippet?.thumbnails?.medium || {}
-
-  if (error) {
-    return <h1>Something went wrong...</h1>
-  }
+  const { channelTitle, title, elapsedTime, url, videoDuration, views } = filterVideoInfo(info)
 
   return (
     <div>
-      <div className="relative aspect-auto h-56">
-        {isImageLoading && <div className="absolute left-0 top-0 h-full w-full  rounded-xl bg-gray-200"></div>}
+      <div className="relative aspect-auto w-auto">
+        {isImageLoading && <div className="absolute left-0 top-0 aspect-video w-full rounded-xl bg-gray-200"></div>}
         <img
-          className="min-w-full rounded-xl"
+          className=" min-w-full rounded-xl transition-all hover:rounded-none "
           onLoad={() => {
             setIsImageLoading(false)
           }}
           src={url}
           alt="thumbnail"
         />
-        <p className="absolute bottom-2 right-2 rounded-md bg-black px-1 text-sm font-semibold text-white">
-          {videoDuration}
-        </p>
+        {!isImageLoading && (
+          <p className="absolute bottom-2 right-2 rounded-md bg-black px-1 text-sm font-semibold text-white">
+            {videoDuration}
+          </p>
+        )}
       </div>
 
-      <div className="my-2 flex items-start gap-3">
-        <div className="relative aspect-square h-10">
-          {isChannelImageLoading && <div className="absolute aspect-square h-10 rounded-full bg-gray-200"></div>}
-          <img
-            className="h-10 rounded-full"
-            onLoad={() => {
-              setIsChannelImageLoading(false)
-            }}
-            src={channelUrl}
-            alt="thumbnail"
-          />
-        </div>
-        <div>
-          <h1 className="line-clamp-2 w-11/12 break-words text-lg font-semibold">{title}</h1>
-          <h3 className="text-lg  text-gray-500">{channelTitle}</h3>
-          <div className="flex items-center gap-3  text-gray-500">
-            <h3>{views + ' views'}</h3>
-            <p className="font-bold">|</p>
-            <h3>{elapsedTime}</h3>
-          </div>
+      <div>
+        <h1 className="line-clamp-2 w-11/12 break-words font-semibold">{title}</h1>
+        <h3 className="line-clamp-1  text-gray-500">{'Channel : ' + channelTitle}</h3>
+        <div className="flex items-center gap-3  text-gray-500">
+          <h3>{views + ' views'}</h3>
+          <p className="font-bold">|</p>
+          <h3>{elapsedTime}</h3>
         </div>
       </div>
     </div>

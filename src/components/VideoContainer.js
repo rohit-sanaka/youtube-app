@@ -8,17 +8,18 @@ import Shimmer from './Shimmer'
 
 const VideoContainer = () => {
   const isMenuOpen = useSelector((store) => store.app.isMenuOpen)
-
   const { data: videoData, isLoading, error } = useFetch(VIDEO_LIST_API_URL)
 
   if (error) {
     return <h1 className="text-center">{error}</h1>
   }
+  
   return (
     <div className={`grid ${isMenuOpen ? 'grid-cols-3' : 'grid-cols-4'} gap-5 gap-y-10 px-28 pt-6 `}>
       {isLoading ? (
         <Shimmer />
       ) : (
+        Array.isArray(videoData) &&
         videoData.length > 0 &&
         videoData.map((info) => (
           <Link key={info.id} to={`/watch?v=${info.id}`}>

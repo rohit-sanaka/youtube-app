@@ -24,7 +24,7 @@ const SearchContainer = () => {
           searchSuggestions.length > 0 &&
           searchSuggestions.map((info) => (
             <Link key={info?.id?.videoId} to={`/watch?v=${info?.id?.videoId}`}>
-              <SearchVideoCard videoId={info.id.videoId} />
+              <SearchVideoCard info={info} />
             </Link>
           ))
         )}

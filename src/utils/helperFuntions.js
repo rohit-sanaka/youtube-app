@@ -105,45 +105,79 @@ export const filterVideoInfo = (info) => {
   if (!info) {
     return info
   }
-  const { contentDetails, snippet, statistics } = info
-  const { duration } = contentDetails
-  const {
-    channelTitle,
-    publishedAt,
-    channelId,
-    description,
-    localized: { title },
-    thumbnails: {
-      medium: { url },
-    },
-  } = snippet
-  const { viewCount, likeCount, commentCount } = statistics
 
-  const videoDuration = convertDurationToTime(duration)
-  const elapsedTime = getPublishedDuration(publishedAt)
-  const views = getCountFormated(viewCount)
-  const likes = getCountFormated(likeCount)
-  const comments = getCountFormated(commentCount)
+  let obj = {}
 
-  return { channelTitle, title, channelId, description, elapsedTime, url, videoDuration, views, likes, comments }
+  const hasContentDetails = Object.prototype.hasOwnProperty.call(info, 'contentDetails')
+  const hasSnippet = Object.prototype.hasOwnProperty.call(info, 'snippet')
+  const hasStatistics = Object.prototype.hasOwnProperty.call(info, 'statistics')
+  if (hasContentDetails) {
+    const { contentDetails } = info
+    const { duration } = contentDetails
+    const videoDuration = convertDurationToTime(duration)
+    obj = { ...obj, videoDuration: videoDuration }
+  }
+
+  if (hasSnippet) {
+    const { snippet } = info
+
+    const {
+      channelTitle,
+      publishedAt,
+      channelId,
+      description,
+      title,
+      thumbnails: {
+        medium: { url },
+      },
+    } = snippet
+    const elapsedTime = getPublishedDuration(publishedAt)
+    obj = { ...obj, channelTitle, elapsedTime, description, title, url, channelId }
+  }
+  if (hasStatistics) {
+    const { statistics } = info
+    const { viewCount, likeCount, commentCount } = statistics
+
+    const views = getCountFormated(viewCount)
+    const likes = getCountFormated(likeCount)
+    const comments = getCountFormated(commentCount)
+
+    obj = { ...obj, views, likes, comments }
+  }
+
+  return obj
 }
 
 export const filterChannelInfo = (info) => {
   if (!info) {
     return info
   }
-  const { snippet, statistics } = info
-  const {
-    thumbnails: {
-      medium: { url },
-    },
-  } = snippet
 
-  const { subscriberCount } = statistics
+  let obj = {}
 
-  const subscribers = getCountFormated(subscriberCount)
+  const hasSnippet = Object.prototype.hasOwnProperty.call(info, 'snippet')
+  const hasStatistics = Object.prototype.hasOwnProperty.call(info, 'statistics')
 
-  return { url, subscribers }
+  if (hasSnippet) {
+    const { snippet } = info
+    const {
+      thumbnails: {
+        medium: { url },
+      },
+    } = snippet
+
+    obj = { ...obj, url }
+  }
+  if (hasStatistics) {
+    const { statistics } = info
+    const { subscriberCount } = statistics
+
+    const subscribers = getCountFormated(subscriberCount)
+
+    obj = { ...obj, subscribers }
+  }
+
+  return obj
 }
 
 export const linkDecorator = (decoratedHref, decoratedText, key) => (
