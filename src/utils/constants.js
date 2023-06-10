@@ -1,5 +1,6 @@
+export const API_KEY = 'AIzaSyAK_UdF8UqhII-HhS-rr9hCBHc7wp-ygYI'
 // export const API_KEY = 'AIzaSyAz2zi0kZs4BqCTC6k7Crg7vlDAKYgamjM'
-export const API_KEY = 'AIzaSyCawWCKkQie2_yDcwY7xAPDJHgdwNTjhZU'
+// export const API_KEY = 'AIzaSyCawWCKkQie2_yDcwY7xAPDJHgdwNTjhZU'
 
 export const VIDEO_LIST_API_URL = `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&&maxResults=15&regionCode=IN&key=${API_KEY}`
 
