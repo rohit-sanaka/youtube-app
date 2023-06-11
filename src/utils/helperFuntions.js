@@ -118,6 +118,11 @@ export const filterVideoInfo = (info) => {
     obj = { ...obj, videoDuration: videoDuration }
   }
 
+  function htmlDecode(input) {
+    var doc = new DOMParser().parseFromString(input, 'text/html')
+    return doc.documentElement.textContent
+  }
+
   if (hasSnippet) {
     const { snippet } = info
 
@@ -126,11 +131,12 @@ export const filterVideoInfo = (info) => {
       publishedAt,
       channelId,
       description,
-      title,
+      title: Videotitle,
       thumbnails: {
         medium: { url },
       },
     } = snippet
+    const title = htmlDecode(Videotitle)
     const elapsedTime = getPublishedDuration(publishedAt)
     obj = { ...obj, channelTitle, elapsedTime, description, title, url, channelId }
   }

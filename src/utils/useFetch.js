@@ -9,7 +9,7 @@ const useFetch = (url) => {
 
   useEffect(() => {
     count.current += 1
-    console.log(count.current)
+    console.log('useeffect :', count.current)
     const fetchVideoData = async () => {
       try {
         setIsLoading(true)
@@ -18,7 +18,7 @@ const useFetch = (url) => {
         setData(data.items)
 
         if (responce.status !== 200) {
-          SetError('message: ' + data?.error?.message + ' \n code: ' + data?.error?.status)
+          SetError('message: ' + data?.error?.message + 'code: ' + data?.error?.status)
         }
       } catch (err) {
         SetError(err)

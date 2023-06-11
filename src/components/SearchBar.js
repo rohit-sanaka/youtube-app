@@ -33,9 +33,7 @@ const SearchBar = () => {
       }
     }
   }
-  
   useEffect(() => {
-    console.log(searchQuery, 'useEffect')
     const getSearchSuggestions = async () => {
       const responce = await fetch(SEARCH_SUGGESTIONS_API_URL + searchQuery)
       const data = await responce.json()
@@ -84,7 +82,7 @@ const SearchBar = () => {
       </form>
 
       {searchSuggestions.length > 0 && isfocused && (
-        <ul className="fixed left-[29.8%] top-16  w-[37%] rounded-2xl bg-white py-3 outline outline-1 outline-slate-200 child:my-2">
+        <ul className="fixed left-[29.8%] top-16 z-50 w-[37%] rounded-2xl bg-white py-3 outline outline-1 outline-slate-200 child:my-2">
           {searchSuggestions.map((suggestion, index) => {
             return (
               <MouseDownLink

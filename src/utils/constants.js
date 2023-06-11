@@ -1,8 +1,17 @@
-export const API_KEY = 'AIzaSyB_NKt2tIVo9yHY1isbPxiqB3LmYl3ppIc'
+export const API_KEY = 'AIzaSyD8xUZK2ORbSdJJgD8tDpVoKEmZLFyUtEY'
+// export const API_KEY = 'AIzaSyC4T-AFgLP3RSOrvaS5wpUHXkdPJVKMsUs'
+// export const API_KEY = 'AIzaSyCiR39N2WNZoLb3aSAcfO37UFhv-eWe9ug'
+// export const API_KEY = 'AIzaSyDtH54NBJRKYLP3w1VZ7gWTNUPI2OP6cn8'
+// export const API_KEY = 'AIzaSyA0ZLgiXnBnpzy_pQCwLtDeDBLiaTUzYgQ'
+// export const API_KEY = 'AIzaSyC6b6RwVP6YHs0ZmabCCKIAUtRcEutXN6Q'
+// export const API_KEY = 'AIzaSyCjidgVGiM-Uq7hWdORuNROdB2JI2rcnTQ'
+// export const API_KEY = 'AIzaSyB_NKt2tIVo9yHY1isbPxiqB3LmYl3ppIc'
 // export const API_KEY = 'AIzaSyAK_UdF8UqhII-HhS-rr9hCBHc7wp-ygYI'
 // export const API_KEY = 'AIzaSyAz2zi0kZs4BqCTC6k7Crg7vlDAKYgamjM'
 
 export const VIDEO_LIST_API_URL = `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&&maxResults=15&regionCode=IN&key=${API_KEY}`
+
+export const SUGGESTED_VIDEO_LIST_API_URL = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&type=video&key=${API_KEY}&relatedToVideoId=`
 
 export const VIDEO_INFO_API_URL = `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&regionCode=IN&key=${API_KEY}&id=`
 

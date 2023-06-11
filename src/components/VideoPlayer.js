@@ -1,28 +1,23 @@
 import { useState } from 'react'
-import { useSearchParams } from 'react-router-dom'
 import useFetch from '../utils/useFetch'
 import { filterVideoInfo } from '../utils/helperFuntions'
 import { filterChannelInfo } from '../utils/helperFuntions'
 import Linkify from 'react-linkify'
 import { linkDecorator } from '../utils/helperFuntions'
-import { API_KEY } from '../utils/constants'
+import { CHANNEL_INFO_API_URL, VIDEO_INFO_API_URL } from '../utils/constants'
 
-const VideoPlayer = () => {
+const VideoPlayer = ({ videoId }) => {
   const [isCollapsed, setIsCollapsed] = useState(true)
-  const [searchParams] = useSearchParams()
-  const videoId = searchParams.get('v')
 
-  const VIDEO_INFO_API_URL = `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=${videoId}&key=${API_KEY}`
-  const { data: info, error } = useFetch(VIDEO_INFO_API_URL)
+  const { data: info, error } = useFetch(VIDEO_INFO_API_URL + videoId)
   const { channelTitle, channelId, description, title, elapsedTime, views, likes, comments } =
-    filterVideoInfo(info[0]) || {}
+    filterVideoInfo(info?.[0]) || {}
 
-  const CHANNEL_DATA_API_URL = `https://youtube.googleapis.com/youtube/v3/channels?part=snippet%2Cstatistics&id=${channelId}&key=${API_KEY}`
-  const { data: channelData, err } = useFetch(CHANNEL_DATA_API_URL)
-  const { url: channelUrl, subscribers } = (channelData && filterChannelInfo(channelData[0])) || {}
+  const { data: channelData, err } = useFetch(CHANNEL_INFO_API_URL + channelId)
+  const { url: channelUrl, subscribers } = filterChannelInfo(channelData?.[0]) || {}
 
-  if (err) {
-    return <h1 className="text-center">{error}</h1>
+  if (err || error) {
+    return <h1 className="text-center">{error || err}</h1>
   }
   return (
     <div className="mx-auto w-full pl-7 pr-2 pt-6">
@@ -30,12 +25,10 @@ const VideoPlayer = () => {
         className="aspect-video w-full"
         src={'https://www.youtube.com/embed/' + videoId + '?autoplay=1'}
         title="YouTube video player"
-        frameBorder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         allowFullScreen
       ></iframe>
       <div className="child:my-2">
-        {/* title */}
         <h1 className="mt-2 line-clamp-2 w-11/12 break-words text-lg font-semibold">{title}</h1>
 
         {/* channel and subscribe, likes */}

@@ -15,7 +15,7 @@ const VideoContainer = () => {
   }
   
   return (
-    <div className={`grid ${isMenuOpen ? 'grid-cols-3' : 'grid-cols-4'} gap-5 gap-y-10 px-28 pt-6 `}>
+    <div className={`grid ${isMenuOpen ? 'grid-cols-3' : 'grid-cols-4'} gap-x-5 gap-y-7 px-20 pt-1`}>
       {isLoading ? (
         <Shimmer />
       ) : (

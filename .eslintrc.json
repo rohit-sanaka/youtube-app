@@ -27,6 +27,7 @@
   "rules": {
     "react/prop-types": 0,
     "indent": ["warn", 2],
+    "no-unused-vars": "warn",
     "linebreak-style": 1,
     "quotes": ["warn", "single"]
   }

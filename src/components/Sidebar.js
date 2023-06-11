@@ -9,8 +9,8 @@ const Sidebar = () => {
     return null
   }
   return (
-    <div className=" sidebar fixed top-16 z-10 h-[calc(100vh-4rem)] w-60 overflow-hidden bg-white py-5 pl-6 pr-3 font-medium hover:overflow-scroll child:w-48 ">
-      <ul className=" list-none child:flex child:items-center child:gap-7 child:rounded-md child:p-2 child:text-lg">
+    <div className=" sidebar fixed top-14 z-10 h-[calc(100vh-4rem)] w-60 overflow-hidden bg-white py-5 pl-6 pr-3 font-medium hover:overflow-scroll child:w-48 ">
+      <ul className=" list-none child:flex child:items-center child:gap-7 child:rounded-md child:p-2 ">
         <NavLink to="/" className={({ isActive }) => (isActive ? 'bg-gray-200 ' : 'hover:bg-gray-200')}>
           <li>Home</li>
         </NavLink>
@@ -22,7 +22,7 @@ const Sidebar = () => {
         </NavLink>
       </ul>
       <hr className="border-1 my-3 border-gray-300" />
-      <ul className=" list-none child:flex child:items-center child:gap-7 child:rounded-md child:p-2 child:px-2 child:text-lg">
+      <ul className=" list-none child:flex child:items-center child:gap-7 child:rounded-md child:p-2 child:px-2 ">
         <NavLink to="library" className={({ isActive }) => (isActive ? 'bg-gray-200 ' : 'hover:bg-gray-200')}>
           <li>Library</li>
         </NavLink>
@@ -43,8 +43,8 @@ const Sidebar = () => {
         </NavLink>
       </ul>
       <hr className=" border-1 my-3 border-gray-300" />
-      <h2 className="text-lg font-bold">Subscriptions</h2>
-      <ul className=" list-none child:flex child:items-center child:gap-7 child:rounded-md child:p-2 child:px-2 child:text-lg">
+      <h2 className=" font-bold">Subscriptions</h2>
+      <ul className=" list-none child:flex child:items-center child:gap-7 child:rounded-md child:p-2 child:px-2 ">
         <NavLink to="channel" className={({ isActive }) => (isActive ? 'bg-gray-200 ' : 'hover:bg-gray-200')}>
           <li>Akshay Saini</li>
         </NavLink>
@@ -59,8 +59,8 @@ const Sidebar = () => {
         </NavLink>
       </ul>
       <hr className=" border-1 my-3 border-gray-300" />
-      <h2 className="text-lg font-bold">Explore</h2>
-      <ul className=" list-none child:flex child:items-center child:gap-7 child:rounded-md child:p-2 child:px-2 child:text-lg">
+      <h2 className="font-bold">Explore</h2>
+      <ul className=" list-none child:flex child:items-center child:gap-7 child:rounded-md child:p-2 child:px-2 ">
         <NavLink to="trending" className={({ isActive }) => (isActive ? 'bg-gray-200 ' : 'hover:bg-gray-200')}>
           <li>Trending</li>
         </NavLink>

@@ -27,7 +27,7 @@ const ButtonsList = () => {
   const [scrollRef, scroll, showLeftButton, showRightButton] = useHorizontalScroll()
 
   return (
-    <div className="sticky top-16 z-10 flex items-center bg-white px-2 py-5">
+    <div className="sticky top-14 z-10 flex items-center bg-white py-5">
       {showLeftButton && (
         <button
           className="absolute left-0 mr-5 w-8 rounded-full p-2 shadow-lg shadow-white hover:bg-gray-300"
@@ -45,10 +45,10 @@ const ButtonsList = () => {
 
       {showRightButton && (
         <button
-          className=" absolute right-0 z-10 ml-5 w-8 rounded-full p-2 hover:bg-gray-200"
+          className="absolute right-0 z-10 p-2 rounded-full "
           onClick={() => scroll(500)}
         >
-          <img src=" https://cdn-icons-png.flaticon.com/512/32/32213.png" alt="arrow" />
+          <img className="ml-auto w-5 blur-0" src=" https://cdn-icons-png.flaticon.com/512/32/32213.png" alt="arrow" />
         </button>
       )}
     </div>

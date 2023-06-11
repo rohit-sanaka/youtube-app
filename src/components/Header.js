@@ -9,7 +9,7 @@ const Header = () => {
 
   return (
     <>
-      <div className="sticky top-0 z-50 flex h-16 justify-between bg-white px-6 py-2">
+      <div className="sticky top-0 z-50 flex h-14 justify-between bg-white px-6 py-2">
         <div className="flex w-48 items-center">
           <img
             className="mr-5 h-8 cursor-pointer rounded-full hover:bg-gray-200"
