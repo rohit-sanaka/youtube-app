@@ -6,13 +6,12 @@ const SearchVideoCard = ({ info }) => {
 
   const { channelTitle, title, elapsedTime, url } = filterVideoInfo(info)
 
-  window.scrollTo({ top: 0, behavior: 'smooth' })
   return (
     <div>
       <div className="relative aspect-video w-auto">
         {isImageLoading && <div className="absolute left-0 top-0 aspect-video w-full rounded-xl bg-gray-200"></div>}
         <img
-          className="min-w-full rounded-xl hover:rounded-none"
+          className={`${isImageLoading ? 'hidden' : ''} min-w-full rounded-xl transition-all hover:rounded-none`}
           onLoad={() => {
             setIsImageLoading(false)
           }}

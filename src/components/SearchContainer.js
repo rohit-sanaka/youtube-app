@@ -2,8 +2,9 @@ import { useSelector } from 'react-redux'
 import { SEARCH_VIDEO_LIST_API } from '../utils/constants'
 import useFetch from '../utils/useFetch'
 import { Link, useSearchParams } from 'react-router-dom'
-import SearchVideoCard from './SearchVideoCard'
+import VideoCard from './VideoCard'
 import Shimmer from './Shimmer'
+import { useEffect } from 'react'
 
 const SearchContainer = () => {
   const isMenuOpen = useSelector((store) => store.app.isMenuOpen)
@@ -11,6 +12,10 @@ const SearchContainer = () => {
   const [searchParms] = useSearchParams()
   const searchQuery = searchParms.get('search_query')
   const { data: searchSuggestions, isLoading, error } = useFetch(SEARCH_VIDEO_LIST_API + searchQuery) || {}
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [searchQuery])
+
   if (error) {
     return <h1 className="text-center">{error}</h1>
   }
@@ -24,7 +29,7 @@ const SearchContainer = () => {
           searchSuggestions.length > 0 &&
           searchSuggestions.map((info) => (
             <Link key={info?.id?.videoId} to={`/watch?v=${info?.id?.videoId}`}>
-              <SearchVideoCard info={info} />
+              <VideoCard info={info} />
             </Link>
           ))
         )}
