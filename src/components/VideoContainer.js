@@ -13,9 +13,9 @@ const VideoContainer = () => {
   if (error) {
     return <h1 className="text-center">{error}</h1>
   }
-  
+
   return (
-    <div className={`grid ${isMenuOpen ? 'grid-cols-3' : 'grid-cols-4'} gap-x-5 gap-y-7 px-20 pt-1`}>
+    <div className={`grid ${isMenuOpen ? 'grid-cols-3' : 'grid-cols-4'} gap-x-5 gap-y-7 px-20 pt-1 transition-all`}>
       {isLoading ? (
         <Shimmer />
       ) : (

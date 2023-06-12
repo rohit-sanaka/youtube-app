@@ -47,8 +47,8 @@ const VideoSuggestions = ({ videoId }) => {
   //         }
   //         return accumulator
   //       }, [])
-  //       console.log(realdata, '1111')
   //       setVidesoData([...realdata])
+  //       console.log(realdata, '1111')
   //     })
   //   }
   // }, [suggestedVideos])

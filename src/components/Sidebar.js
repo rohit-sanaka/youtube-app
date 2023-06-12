@@ -5,11 +5,15 @@ import { memo } from 'react'
 const Sidebar = () => {
   const isMenuOpen = useSelector((store) => store.app.isMenuOpen)
 
-  if (!isMenuOpen) {
-    return null
-  }
+  // if (!isMenuOpen) {
+  //   return null
+  // }
   return (
-    <div className=" sidebar fixed top-14 z-10 h-[calc(100vh-4rem)] w-60 overflow-hidden bg-white py-5 pl-6 pr-3 font-medium hover:overflow-scroll child:w-48 ">
+    <div
+      className={`${
+        isMenuOpen ? 'left-0' : '-left-60'
+      } sidebar fixed top-14 z-10 h-[calc(100vh-4rem)] w-60 overflow-hidden bg-white py-5 pl-6 pr-3 font-medium hover:overflow-scroll child:w-48 transition-all `}
+    >
       <ul className=" list-none child:flex child:items-center child:gap-7 child:rounded-md child:p-2 ">
         <NavLink to="/" className={({ isActive }) => (isActive ? 'bg-gray-200 ' : 'hover:bg-gray-200')}>
           <li>Home</li>

@@ -5,6 +5,7 @@ import { filterChannelInfo } from '../utils/helperFuntions'
 import Linkify from 'react-linkify'
 import { linkDecorator } from '../utils/helperFuntions'
 import { CHANNEL_INFO_API_URL, VIDEO_INFO_API_URL } from '../utils/constants'
+import Comments from './Comments'
 
 const VideoPlayer = ({ videoId }) => {
   const [isCollapsed, setIsCollapsed] = useState(true)
@@ -33,7 +34,7 @@ const VideoPlayer = ({ videoId }) => {
 
         {/* channel and subscribe, likes */}
         <div className="flex items-start gap-3">
-          <img className="w-12 rounded-full " src={channelUrl} alt="thumbnail" />
+          {channelUrl && <img className="w-12 rounded-full " src={channelUrl} alt="thumbnail" />}
           <div>
             <h3 className="text-lg ">{channelTitle}</h3>
             <p className="text-sm leading-loose  text-gray-500">{subscribers + ' subscribers'}</p>
@@ -68,6 +69,7 @@ const VideoPlayer = ({ videoId }) => {
         </div>
 
         <div>{comments + ' comments'}</div>
+        <Comments videoId={videoId} />
       </div>
     </div>
   )

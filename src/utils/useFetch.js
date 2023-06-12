@@ -1,15 +1,11 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 
 const useFetch = (url) => {
   const [data, setData] = useState([])
   const [isLoading, setIsLoading] = useState(false)
   const [error, SetError] = useState('')
 
-  const count = useRef(0)
-
   useEffect(() => {
-    count.current += 1
-    console.log('useeffect :', count.current)
     const fetchVideoData = async () => {
       try {
         setIsLoading(true)

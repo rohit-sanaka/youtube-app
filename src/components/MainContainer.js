@@ -7,7 +7,7 @@ const MainContainer = () => {
   const isMenuOpen = useSelector((store) => store.app.isMenuOpen)
 
   return (
-    <div className={`${isMenuOpen ? 'ml-60' : ''} pr-6`}>
+    <div className={`${isMenuOpen ? 'ml-60' : ''} pr-6 transition-all`}>
       <ButtonsList />
       <VideoContainer />
     </div>

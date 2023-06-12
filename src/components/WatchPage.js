@@ -11,15 +11,15 @@ const WatchPage = () => {
   const [searchParams] = useSearchParams()
   const videoId = searchParams.get('v')
 
+  window.scrollTo({ top: 0, behavior: 'smooth' })
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
     dispatch(closeMenu())
   }, [dispatch])
 
   return (
     <div className="watchpage ">
       <VideoPlayer videoId={videoId} />
-      <VideoSuggestions videoId={videoId}/>
+      <VideoSuggestions videoId={videoId} />
     </div>
   )
 }
